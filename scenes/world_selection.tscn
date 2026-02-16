@@ -1,0 +1,394 @@
+[gd_scene format=3 uid="uid://worldsel01"]
+
+[ext_resource type="Script" path="res://scripts/world_selection.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/chosse.webp" id="2"]
+[ext_resource type="Texture2D" path="res://assets/forest.webp" id="3"]
+[ext_resource type="Texture2D" path="res://assets/farm.webp" id="4"]
+[ext_resource type="Texture2D" path="res://assets/ocean.webp" id="5"]
+[ext_resource type="Texture2D" path="res://assets/city.webp" id="6"]
+[ext_resource type="Texture2D" path="res://assets/back.webp" id="7"]
+[ext_resource type="FontFile" path="res://fonts/GROBOLD.ttf" id="8"]
+[ext_resource type="Texture2D" path="res://assets/goldstar.webp" id="9"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_card"]
+
+[sub_resource type="Animation" id="Animation_star_sparkle"]
+resource_name = "star_sparkle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainVBox/TitleBox/StarLeft:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.26, 0.0, -0.26, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainVBox/TitleBox/StarLeft:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainVBox/TitleBox/StarRight:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.26, 0.0, 0.26, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainVBox/TitleBox/StarRight:scale")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.25, 1.25), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ws"]
+_data = {
+"star_sparkle": SubResource("Animation_star_sparkle")
+}
+
+[node name="WorldSelection" type="Control" unique_id=1251710707]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=2146494234]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MainVBox" type="VBoxContainer" parent="." unique_id=1358962878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="TopMargin" type="Control" parent="MainVBox" unique_id=1967212619]
+custom_minimum_size = Vector2(0, 15)
+layout_mode = 2
+
+[node name="TitleBox" type="HBoxContainer" parent="MainVBox" unique_id=1513641265]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="StarLeft" type="TextureRect" parent="MainVBox/TitleBox" unique_id=1793548532]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("9")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TitleLabel" type="Label" parent="MainVBox/TitleBox" unique_id=1208541236]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.08, 0.33, 0.72, 1)
+theme_override_constants/outline_size = 14
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 26
+text = "Choose Your World!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarRight" type="TextureRect" parent="MainVBox/TitleBox" unique_id=1872393865]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+pivot_offset = Vector2(20, 20)
+texture = ExtResource("9")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GridCenter" type="CenterContainer" parent="MainVBox" unique_id=322320518]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="CardsContainer" type="GridContainer" parent="MainVBox/GridCenter" unique_id=541407555]
+layout_mode = 2
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="ForestCard" type="Control" parent="MainVBox/GridCenter/CardsContainer" unique_id=1300322377]
+custom_minimum_size = Vector2(195, 280)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainVBox/GridCenter/CardsContainer/ForestCard" unique_id=1292287301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MainVBox/GridCenter/CardsContainer/ForestCard" unique_id=829277289]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_card")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_card")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_card")
+
+[node name="LevelProgress" type="Label" parent="MainVBox/GridCenter/CardsContainer/ForestCard" unique_id=553118189]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -42.5
+offset_top = -85.0
+offset_right = 37.5
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 24
+text = "0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FarmCard" type="Control" parent="MainVBox/GridCenter/CardsContainer" unique_id=452162607]
+custom_minimum_size = Vector2(195, 280)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainVBox/GridCenter/CardsContainer/FarmCard" unique_id=1404004567]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MainVBox/GridCenter/CardsContainer/FarmCard" unique_id=424734683]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_card")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_card")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_card")
+
+[node name="LevelProgress" type="Label" parent="MainVBox/GridCenter/CardsContainer/FarmCard" unique_id=269128554]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.5
+offset_top = -85.0
+offset_right = 35.5
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 24
+text = "0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OceanCard" type="Control" parent="MainVBox/GridCenter/CardsContainer" unique_id=1505631119]
+custom_minimum_size = Vector2(195, 280)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainVBox/GridCenter/CardsContainer/OceanCard" unique_id=94517886]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MainVBox/GridCenter/CardsContainer/OceanCard" unique_id=1481670465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_card")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_card")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_card")
+
+[node name="LevelProgress" type="Label" parent="MainVBox/GridCenter/CardsContainer/OceanCard" unique_id=409203748]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -41.5
+offset_top = -86.0
+offset_right = 38.5
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 24
+text = "0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CityCard" type="Control" parent="MainVBox/GridCenter/CardsContainer" unique_id=1724715051]
+custom_minimum_size = Vector2(195, 280)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MainVBox/GridCenter/CardsContainer/CityCard" unique_id=1276527788]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+offset_top = 10.0
+offset_right = -15.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="MainVBox/GridCenter/CardsContainer/CityCard" unique_id=353383235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_card")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_card")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_card")
+
+[node name="LevelProgress" type="Label" parent="MainVBox/GridCenter/CardsContainer/CityCard" unique_id=1368978670]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -39.5
+offset_top = -86.0
+offset_right = 40.5
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 24
+text = "0/10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackButton" type="TextureButton" parent="MainVBox" unique_id=1467436881]
+custom_minimum_size = Vector2(180, 80)
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MainVBox/BackButton" unique_id=570294427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.6, 0.2, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("8")
+theme_override_font_sizes/font_size = 36
+text = "Back"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BottomMargin" type="Control" parent="MainVBox" unique_id=598667798]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ws")
+}
+autoplay = "star_sparkle"
+
+[connection signal="pressed" from="MainVBox/GridCenter/CardsContainer/ForestCard/Button" to="." method="_on_forest_pressed"]
+[connection signal="pressed" from="MainVBox/GridCenter/CardsContainer/FarmCard/Button" to="." method="_on_farm_pressed"]
+[connection signal="pressed" from="MainVBox/GridCenter/CardsContainer/OceanCard/Button" to="." method="_on_ocean_pressed"]
+[connection signal="pressed" from="MainVBox/GridCenter/CardsContainer/CityCard/Button" to="." method="_on_city_pressed"]
+[connection signal="pressed" from="MainVBox/BackButton" to="." method="_on_back_pressed"]

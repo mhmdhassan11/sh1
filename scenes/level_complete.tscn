@@ -1,0 +1,276 @@
+[gd_scene load_steps=11 format=3 uid="uid://lvlcomplete1"]
+
+[ext_resource type="Script" path="res://scripts/level_complete.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/complate.webp" id="2"]
+[ext_resource type="Texture2D" path="res://assets/greate.webp" id="3"]
+[ext_resource type="Texture2D" path="res://assets/zr-removebg-preview.webp" id="4"]
+[ext_resource type="FontFile" path="res://fonts/GROBOLD.ttf" id="5"]
+[ext_resource type="Texture2D" path="res://assets/goldstar.webp" id="6"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btn"]
+texture = ExtResource("4")
+texture_margin_left = 20.0
+texture_margin_top = 10.0
+texture_margin_right = 20.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="Animation" id="Animation_celebrate"]
+resource_name = "celebrate"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Center/VBox/Greate:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.1, 1.1), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Center/VBox/StarsContainer/Star1:rotation")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Center/VBox/StarsContainer/Star2:rotation")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.174533, 0.0, 0.174533, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Center/VBox/StarsContainer/Star3:rotation")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533, 0.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Center/VBox/StarsContainer/Star1:scale")
+tracks/4/interp = 2
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Center/VBox/StarsContainer/Star2:scale")
+tracks/5/interp = 2
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Center/VBox/StarsContainer/Star3:scale")
+tracks/6/interp = 2
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cel"]
+_data = {
+"celebrate": SubResource("Animation_celebrate")
+}
+
+[node name="LevelComplete" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 40
+alignment = 1
+
+[node name="Greate" type="TextureRect" parent="Center/VBox"]
+custom_minimum_size = Vector2(400, 160)
+layout_mode = 2
+pivot_offset = Vector2(200, 80)
+texture = ExtResource("3")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Center/VBox/Greate"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -40.0
+offset_right = 200.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 40
+text = "GREAT JOB!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StarsContainer" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Star1" type="TextureRect" parent="Center/VBox/StarsContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="Center/VBox/StarsContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="Center/VBox/StarsContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Buttons" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NextButton" type="Button" parent="Center/VBox/Buttons"]
+custom_minimum_size = Vector2(160, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+text = "NEXT"
+
+[node name="ReplayButton" type="Button" parent="Center/VBox/Buttons"]
+custom_minimum_size = Vector2(160, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 28
+theme_override_styles/normal = SubResource("StyleBoxTexture_btn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_btn")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_btn")
+text = "REPLAY"
+
+[node name="ConfettiLeft" type="CPUParticles2D" parent="."]
+position = Vector2(0, 540)
+amount = 40
+lifetime = 2.5
+explosiveness = 0.8
+randomness = 0.5
+direction = Vector2(1, -1)
+spread = 30.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 600.0
+initial_velocity_max = 800.0
+angular_velocity_min = 100.0
+angular_velocity_max = 300.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(1, 0.2, 0.2, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="ConfettiRight" type="CPUParticles2D" parent="."]
+position = Vector2(450, 540)
+amount = 40
+lifetime = 2.5
+explosiveness = 0.8
+randomness = 0.5
+direction = Vector2(-1, -1)
+spread = 30.0
+gravity = Vector2(0, 400)
+initial_velocity_min = 600.0
+initial_velocity_max = 800.0
+angular_velocity_min = 100.0
+angular_velocity_max = 300.0
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(0.2, 0.5, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cel")
+}
+autoplay = "celebrate"
+
+[connection signal="pressed" from="Center/VBox/Buttons/NextButton" to="." method="_on_next_pressed"]
+[connection signal="pressed" from="Center/VBox/Buttons/ReplayButton" to="." method="_on_replay_pressed"]

@@ -1,0 +1,344 @@
+[gd_scene format=3 uid="uid://gamescreen1"]
+
+[ext_resource type="Script" path="res://scripts/game_screen.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/game.webp" id="2"]
+[ext_resource type="Texture2D" path="res://assets/brwaz-removebg-preview.webp" id="4"]
+[ext_resource type="FontFile" path="res://fonts/GROBOLD.ttf" id="5"]
+[ext_resource type="Texture2D" path="res://assets/goldstar.webp" id="6"]
+[ext_resource type="Texture2D" path="res://assets/hart.webp" id="7"]
+[ext_resource type="Texture2D" path="res://assets/whitestar.webp" id="8"]
+[ext_resource type="Texture2D" path="res://assets/farm/cow.webp" id="9"]
+[ext_resource type="Texture2D" path="res://assets/farm/sheep.webp" id="10"]
+[ext_resource type="Texture2D" path="res://assets/farm/duck.webp" id="11"]
+[ext_resource type="Texture2D" path="res://assets/farm/cowshadow.webp" id="12"]
+[ext_resource type="Texture2D" path="res://assets/farm/sheepshadow.webp" id="13"]
+[ext_resource type="Texture2D" path="res://assets/farm/duckshadow.webp" id="14"]
+[ext_resource type="Texture2D" path="res://assets/back.webp" id="15"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_topbar"]
+bg_color = Color(0.18, 0.55, 0.28, 0.8)
+border_width_bottom = 3
+border_color = Color(0.12, 0.4, 0.18, 1)
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_board"]
+
+[sub_resource type="Gradient" id="Gradient_success"]
+offsets = PackedFloat32Array(0, 0.33, 0.66, 1)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 0.5, 1, 1)
+
+[sub_resource type="Animation" id="Animation_idle"]
+resource_name = "idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TopBar/HBox/StarsBox/StarIcon:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TopBar/HBox/HeartsBox/HeartIcon:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1.5, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.15, 1.15), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ui"]
+_data = {
+&"idle": SubResource("Animation_idle")
+}
+
+[node name="GameScreen" type="Control" unique_id=379990385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="Background" type="TextureRect" parent="." unique_id=57960098]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="TopBar" type="PanelContainer" parent="." unique_id=1376806806]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_topbar")
+
+[node name="HBox" type="HBoxContainer" parent="TopBar" unique_id=1534787147]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="StarsBox" type="HBoxContainer" parent="TopBar/HBox" unique_id=981773085]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="StarIcon" type="TextureRect" parent="TopBar/HBox/StarsBox" unique_id=1026172735]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+texture = ExtResource("6")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StarsLabel" type="Label" parent="TopBar/HBox/StarsBox" unique_id=688980227]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 24
+text = "0"
+vertical_alignment = 1
+
+[node name="Spacer1" type="Control" parent="TopBar/HBox" unique_id=881189280]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="LevelLabel" type="Label" parent="TopBar/HBox" unique_id=246957087]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 28
+text = "Level 2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="Control" parent="TopBar/HBox" unique_id=602701384]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Stars" type="HBoxContainer" parent="TopBar/HBox" unique_id=140459212]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Star1" type="TextureRect" parent="TopBar/HBox/Stars" unique_id=708207344]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star2" type="TextureRect" parent="TopBar/HBox/Stars" unique_id=1884100806]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Star3" type="TextureRect" parent="TopBar/HBox/Stars" unique_id=2078824097]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("8")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer3" type="Control" parent="TopBar/HBox" unique_id=1883610615]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HeartsBox" type="HBoxContainer" parent="TopBar/HBox" unique_id=1747785620]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HeartIcon" type="TextureRect" parent="TopBar/HBox/HeartsBox" unique_id=866472753]
+custom_minimum_size = Vector2(35, 35)
+layout_mode = 2
+texture = ExtResource("7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HeartsLabel" type="Label" parent="TopBar/HBox/HeartsBox" unique_id=787374044]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("5")
+theme_override_font_sizes/font_size = 24
+text = "×2"
+vertical_alignment = 1
+
+[node name="Frame" type="TextureRect" parent="." unique_id=1733202448]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.02
+anchor_top = 0.1
+anchor_right = 0.98
+anchor_bottom = 0.58
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4")
+expand_mode = 1
+
+[node name="GameBoard" type="PanelContainer" parent="." unique_id=1945338509]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.12
+anchor_right = 0.95
+anchor_bottom = 0.56
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_board")
+
+[node name="VBox" type="VBoxContainer" parent="GameBoard" unique_id=1287765215]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ObjectArea" type="Control" parent="GameBoard/VBox" unique_id=459875562]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ObjectContainer" type="HBoxContainer" parent="GameBoard/VBox/ObjectArea" unique_id=885789862]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Cow" type="TextureRect" parent="GameBoard/VBox/ObjectArea/ObjectContainer" unique_id=1413674160]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("9")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sheep" type="TextureRect" parent="GameBoard/VBox/ObjectArea/ObjectContainer" unique_id=689035032]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("10")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duck" type="TextureRect" parent="GameBoard/VBox/ObjectArea/ObjectContainer" unique_id=1092811209]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+mouse_filter = 0
+texture = ExtResource("11")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Divider" type="ColorRect" parent="GameBoard/VBox" unique_id=2099106300]
+custom_minimum_size = Vector2(0, 5)
+layout_mode = 2
+color = Color(1, 1, 1, 0.3)
+
+[node name="ShadowArea" type="Control" parent="GameBoard/VBox" unique_id=2008610710]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ShadowContainer" type="HBoxContainer" parent="GameBoard/VBox/ShadowArea" unique_id=21524468]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Cow" type="TextureRect" parent="GameBoard/VBox/ShadowArea/ShadowContainer" unique_id=1151181783]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("12")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sheep" type="TextureRect" parent="GameBoard/VBox/ShadowArea/ShadowContainer" unique_id=2096638624]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("13")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Duck" type="TextureRect" parent="GameBoard/VBox/ShadowArea/ShadowContainer" unique_id=626387581]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("14")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="BackButton" type="TextureButton" parent="." unique_id=472590683]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -126.0
+offset_right = 102.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+texture_normal = ExtResource("15")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="DragLayer" type="Control" parent="." unique_id=491660574]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = -2.0
+offset_right = 2.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SuccessParticles" type="CPUParticles2D" parent="." unique_id=640700173]
+emitting = false
+amount = 40
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+randomness = 0.5
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 300)
+initial_velocity_min = 200.0
+initial_velocity_max = 400.0
+angular_velocity_min = 200.0
+angular_velocity_max = 500.0
+scale_amount_min = 5.0
+scale_amount_max = 12.0
+color_initial_ramp = SubResource("Gradient_success")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=59445818]
+libraries/ = SubResource("AnimationLibrary_ui")
+autoplay = &"idle"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_pressed"]
