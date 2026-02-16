@@ -1,0 +1,28 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main ]  # كل ما تعمل push على main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ نسخ الكود
+      - uses: actions/checkout@v3
+
+      # 2️⃣ تحميل Godot للبناء
+      - name: Setup Godot
+        uses: firebelley/godot-export@v5
+        with:
+          godot-version: 4.2
+          export-name: ShadowMatch
+          export-presets: Android
+
+      # 3️⃣ رفع APK بعد البناء
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: ShadowMatch-APK
+          path: build/android/*.apk
