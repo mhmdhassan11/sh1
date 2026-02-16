@@ -9,18 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # نسخ الكود
+      # 1️⃣ نسخ المشروع
       - uses: actions/checkout@v3
 
-      # استخدام Godot Export v4 لبناء APK
-      - uses: firebelley/godot-export@v4
-        with:
-          godot-version: 4.2
-          export-name: ShadowMatch
-          export-presets: Android
+      # 2️⃣ تحميل Godot headless
+      - name: Download Godot Headless
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_linux_headless.64.zip -O godot.zip || true
+          unzip -o godot.zip -d godot
+          chmod +x godot/Godot_v4.2-stable_linux_headless.64
 
-      # رفع APK جاهز للتحميل
-      - uses: actions/upload-artifact@v4
+      # 3️⃣ بناء APK
+      - name: Build Android APK
+        run: |
+          godot/Godot_v4.2-stable_linux_headless.64 --headless --export "Android" build/android/ShadowMatch.apk
+
+      # 4️⃣ رفع APK
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: ShadowMatch-APK
-          path: build/android/*.apk
+          path: build/android/ShadowMatch.apk
