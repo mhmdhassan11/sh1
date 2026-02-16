@@ -2,7 +2,7 @@ name: Build Android APK
 
 on:
   push:
-    branches: [ main ]  # كل ما تعمل push على main
+    branches: [ main ]
 
 jobs:
   build:
@@ -12,17 +12,21 @@ jobs:
       # 1️⃣ نسخ الكود
       - uses: actions/checkout@v3
 
-      # 2️⃣ تحميل Godot للبناء
+      # 2️⃣ تنزيل Godot CLI
       - name: Setup Godot
-        uses: firebelley/godot-export@v5
-        with:
-          godot-version: 4.2
-          export-name: ShadowMatch
-          export-presets: Android
+        run: |
+          wget https://downloads.tuxfamily.org/godotengine/4.2/Godot_v4.2-stable_linux_headless.64.zip -O godot.zip
+          unzip godot.zip -d godot
+          chmod +x godot/Godot_v4.2-stable_linux_headless.64
 
-      # 3️⃣ رفع APK بعد البناء
+      # 3️⃣ Build APK
+      - name: Build Android APK
+        run: |
+          godot/Godot_v4.2-stable_linux_headless.64 --headless --export "Android" build/android/ShadowMatch.apk
+
+      # 4️⃣ رفع APK
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: ShadowMatch-APK
-          path: build/android/*.apk
+          path: build/android/ShadowMatch.apk
